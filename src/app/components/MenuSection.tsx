@@ -166,27 +166,36 @@ export default function MenuSection() {
 
           {/* Isi 25 — full width banner */}
           <div
-            className="md:col-span-12 group relative rounded-2xl overflow-hidden cursor-pointer h-[140px] md:h-[160px] reveal hover:-translate-y-1 transition-all duration-300"
+            className="md:col-span-12 group relative rounded-2xl overflow-hidden cursor-pointer reveal hover:-translate-y-1 transition-all duration-300"
             style={{ transitionDelay: '0.55s' }}>
 
             <div className="absolute inset-0 bg-gradient-to-r from-[#D32F2F] via-[#C62828] to-[#B71C1C]" />
-            {/* Subtle checkered overlay */}
             <div className="absolute inset-0 checkered-pattern opacity-[0.06]" />
-            {/* Watermark */}
-            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[120px] font-black text-white/[0.06] leading-none pointer-events-none select-none">
+            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[120px] font-black text-white/[0.06] leading-none pointer-events-none select-none hidden md:block">
               25
             </span>
 
-            <div className="relative z-10 h-full flex items-center px-7 md:px-10 gap-6 md:gap-10">
-              <div>
-                <p className="text-white/60 text-[10px] uppercase tracking-widest font-medium mb-1">Paket Terbesar</p>
-                <h3 className="text-white font-black text-3xl md:text-5xl leading-none">Isi 25</h3>
-                <p className="text-white/50 text-xs mt-1">Ori / Spicy</p>
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center px-6 py-5 md:px-10 md:py-0 md:h-[160px] gap-4 md:gap-10">
+
+              {/* Title row — on mobile: title + pesan button side by side */}
+              <div className="flex items-start justify-between md:block shrink-0">
+                <div>
+                  <p className="text-white/60 text-[10px] uppercase tracking-widest font-medium mb-1">Paket Terbesar</p>
+                  <h3 className="text-white font-black text-3xl md:text-5xl leading-none">Isi 25</h3>
+                  <p className="text-white/50 text-xs mt-1">Ori / Spicy</p>
+                </div>
+                <a
+                  href="#order"
+                  className="md:hidden flex items-center gap-1.5 px-4 py-2 bg-white text-[#D32F2F] text-[11px] font-black rounded-full hover:bg-[#FFF8E1] transition-colors shadow-lg shrink-0 ml-4">
+                  <Icon name="ShoppingCartIcon" size={13} />
+                  Pesan
+                </a>
               </div>
 
-              <div className="w-px h-14 bg-white/15 hidden sm:block shrink-0" />
+              <div className="w-px h-14 bg-white/15 hidden md:block shrink-0" />
 
-              <div className="flex-1 flex flex-wrap gap-x-6 gap-y-2">
+              {/* Prices — 2-col grid on mobile, flex-wrap on desktop */}
+              <div className="grid grid-cols-2 md:flex md:flex-wrap flex-1 gap-x-6 gap-y-3">
                 {[
                   { label: 'Tanpa Topping', price: 'Rp 118K' },
                   { label: 'Topping Keju ½', price: 'Rp 123K' },
@@ -202,7 +211,7 @@ export default function MenuSection() {
 
               <a
                 href="#order"
-                className="hidden sm:flex items-center gap-2 px-6 py-3 bg-white text-[#D32F2F] text-xs font-black rounded-full hover:bg-[#FFF8E1] transition-colors shrink-0 shadow-lg">
+                className="hidden md:flex items-center gap-2 px-6 py-3 bg-white text-[#D32F2F] text-xs font-black rounded-full hover:bg-[#FFF8E1] transition-colors shrink-0 shadow-lg">
                 <Icon name="ShoppingCartIcon" size={15} />
                 Pesan
               </a>

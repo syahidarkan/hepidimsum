@@ -341,7 +341,6 @@ export default function OrderFormSection() {
                                 </span>
                               )}
                               <span className="font-bold text-[#1A1A1A]">{item.label}</span>
-                              <span className="block text-[10px] mt-0.5 text-[#1A1A1A]/40">{item.price}</span>
                             </button>
                           );
                         })}
