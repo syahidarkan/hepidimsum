@@ -137,7 +137,7 @@ export default function HeroSection() {
                   alt="Dimsum Mentai Hepi Dimsum — kukus dengan saus mentai pilihan"
                   width={560}
                   height={440}
-                  className="w-full h-[280px] sm:h-[340px] md:h-[400px] object-cover"
+                  className="w-full h-[280px] sm:h-[340px] md:h-[400px] object-cover object-[center_35%]"
                 />
                 {/* Gradient at bottom for badges */}
                 <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-black/70 to-transparent" />
@@ -161,8 +161,8 @@ export default function HeroSection() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-slide-up delay-2200 z-10">
-        <span className="text-[10px] uppercase tracking-widest text-white/35">Scroll</span>
-        <div className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent" />
+        <span className="text-[10px] uppercase tracking-widest text-white/65">Scroll</span>
+        <div className="w-px h-10 bg-gradient-to-b from-white/65 to-transparent" />
       </div>
 
       {/* Decorative checkered strip — bottom */}
