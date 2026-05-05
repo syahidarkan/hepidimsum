@@ -143,11 +143,7 @@ export default function OrderFormSection() {
       `Varian   : ${form.varian.join(' & ')}`,
       `Chili Oil: ${form.chilioil ? 'Ya (termasuk)' : 'Tidak'}`,
       form.catatan ? `Catatan  : ${form.catatan}` : null,
-      uploadedUrl
-        ? `\n🧾 Bukti pembayaran:\n${uploadedUrl}`
-        : form.buktiFile
-        ? `\n📎 Bukti pembayaran menyusul di chat ini.`
-        : null,
+      uploadedUrl ? `\n🧾 Bukti pembayaran:\n${uploadedUrl}` : null,
     ]
       .filter((l) => l !== null)
       .join('\n');
