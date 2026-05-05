@@ -6,7 +6,7 @@ import Icon from '@/components/ui/AppIcon';
 
 const packages = [
   { id: 1, num: '3',  label: 'Isi 3',  priceBase: 'Rp 15K', priceKeju: 'Rp 16K', featured: false },
-  { id: 2, num: '6',  label: 'Isi 6',  priceBase: 'Rp 28K', priceKeju: 'Rp 30K', featured: false },
+  { id: 2, num: '6',  label: 'Isi 6',  priceBase: 'Rp 29K', priceKeju: 'Rp 31K', featured: false },
   { id: 3, num: '10', label: 'Isi 10', priceBase: 'Rp 48K', priceKeju: 'Rp 51K', featured: true  },
   { id: 4, num: '16', label: 'Isi 16', priceBase: 'Rp 78K', priceKeju: 'Rp 81K+', featured: false },
 ];

@@ -5,11 +5,11 @@ import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 
 const menuOptions = [
-  { id: 'isi3',  label: 'Isi 3',  price: 'Rp 15.000' },
-  { id: 'isi6',  label: 'Isi 6',  price: 'Rp 28.000' },
-  { id: 'isi10', label: 'Isi 10', price: 'Rp 48.000' },
-  { id: 'isi16', label: 'Isi 16', price: 'Rp 78.000' },
-  { id: 'isi25', label: 'Isi 25', price: 'Rp 118.000' },
+  { id: 'isi3',  label: 'Isi 3'  },
+  { id: 'isi6',  label: 'Isi 6'  },
+  { id: 'isi10', label: 'Isi 10' },
+  { id: 'isi16', label: 'Isi 16' },
+  { id: 'isi25', label: 'Isi 25' },
 ];
 
 const varianOptions = ['Ori', 'Spicy', 'Keju'];
@@ -59,7 +59,6 @@ export default function OrderFormSection() {
   const [submitted, setSubmitted] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<'idle' | 'uploading' | 'done' | 'error'>('idle');
   const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
-  const [showFallbackModal, setShowFallbackModal] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -127,7 +126,7 @@ export default function OrderFormSection() {
     const paketStr = form.paket
       .map((id) => {
         const pkg = menuOptions.find((m) => m.id === id);
-        return `  - ${pkg?.label} (${pkg?.price})`;
+        return `  - ${pkg?.label}`;
       })
       .join('\n');
 
@@ -156,12 +155,8 @@ export default function OrderFormSection() {
     // window.open dipanggil synchronous dalam event handler — tidak diblokir browser
     window.open(`https://wa.me/6287784451075?text=${encodeURIComponent(lines)}`, '_blank');
 
-    if (form.buktiFile && !uploadedUrl) {
-      setShowFallbackModal(true);
-    } else {
-      setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 6000);
-    }
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 6000);
   };
 
   const isUploadPending = form.buktiFile !== null && uploadStatus === 'uploading';
@@ -510,71 +505,6 @@ export default function OrderFormSection() {
         </div>
       </section>
 
-      {/* ── Fallback modal bila upload gagal ── */}
-      {showFallbackModal && form.buktiPreview && (
-        <div
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setShowFallbackModal(false)}
-        >
-          <div
-            className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h4 className="font-bold text-[#1A1A1A] text-base">Lampirkan Bukti Bayar</h4>
-                <p className="text-xs text-[#1A1A1A]/50 mt-0.5">Upload otomatis gagal — kirim manual</p>
-              </div>
-              <button
-                onClick={() => {
-                  setShowFallbackModal(false);
-                  setSubmitted(true);
-                  setTimeout(() => setSubmitted(false), 6000);
-                }}
-                className="w-8 h-8 rounded-full bg-[#F5E6C3] flex items-center justify-center hover:bg-[#E0CDA0] transition-colors"
-              >
-                <Icon name="XMarkIcon" size={16} className="text-[#1A1A1A]" />
-              </button>
-            </div>
-
-            <div className="flex items-start gap-3 p-3 bg-[#FFF8E1] rounded-xl border border-[#E0CDA0] mb-4">
-              <span className="text-xl leading-none mt-0.5">💬</span>
-              <p className="text-xs text-[#1A1A1A]/65 leading-relaxed">
-                WhatsApp sudah terbuka. Ketuk ikon <strong>📎 lampiran</strong> lalu kirim foto ini ke chat Hepi Dimsum.
-              </p>
-            </div>
-
-            <div className="rounded-xl overflow-hidden border border-[#E0CDA0] mb-4">
-              <img
-                src={form.buktiPreview}
-                alt="Bukti pembayaran"
-                className="w-full max-h-52 object-contain bg-[#FDF5E0]"
-              />
-            </div>
-
-            <div className="flex gap-2">
-              <a
-                href={form.buktiPreview}
-                download={form.buktiFile?.name ?? 'bukti-pembayaran.jpg'}
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-[#D32F2F] text-white text-xs font-bold rounded-full hover:bg-[#B71C1C] transition-colors"
-              >
-                <Icon name="ArrowDownTrayIcon" size={13} />
-                Download Foto
-              </a>
-              <button
-                onClick={() => {
-                  setShowFallbackModal(false);
-                  setSubmitted(true);
-                  setTimeout(() => setSubmitted(false), 6000);
-                }}
-                className="flex-1 py-2.5 border border-[#E0CDA0] text-xs font-semibold text-[#1A1A1A]/60 rounded-full hover:bg-[#FFF8E1] transition-colors"
-              >
-                Tutup
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
