@@ -39,11 +39,15 @@ const initialForm: FormState = {
 };
 
 // Upload via internal proxy route → server meneruskan ke catbox.moe (bebas CORS)
-async function uploadToCatbox(file: File): Promise<string | null> {
+async function uploadBukti(file: File): Promise<string | null> {
   try {
     const fd = new FormData();
     fd.append('file', file);
-    const res = await fetch('/api/upload', { method: 'POST', body: fd });
+    const res = await fetch('/api/upload', {
+      method: 'POST',
+      body: fd,
+      signal: AbortSignal.timeout(20000),
+    });
     if (!res.ok) return null;
     const data = await res.json();
     return typeof data.url === 'string' && data.url.startsWith('https://') ? data.url : null;
@@ -103,7 +107,7 @@ export default function OrderFormSection() {
       setUploadedUrl(null);
       // Upload segera saat file dipilih — supaya URL sudah siap waktu submit
       setUploadStatus('uploading');
-      const url = await uploadToCatbox(file);
+      const url = await uploadBukti(file);
       setUploadedUrl(url);
       setUploadStatus(url ? 'done' : 'error');
     },
